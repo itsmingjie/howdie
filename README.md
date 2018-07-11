@@ -17,6 +17,9 @@ CHANNEL_ID = C••••••••
 
 # Dev private channel for you to receive notifications about service availability
 LOG_CHANNEL_ID = G••••••••
+
+# In order to prevent the message being sent before the user joins, the number of milliseconds Howdie should wait before sending the greeting
+DEFER_TIMEOUT = 2000
 ```
 
 ### Setting up Howdie

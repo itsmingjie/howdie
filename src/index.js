@@ -49,8 +49,8 @@ rtm.on('member_joined_channel', (eventData) => {
         /* timeout prevents message from going out before user joins channel */
         setTimeout(function(){
             rtm.sendMessage("Howdy, <@" + eventData.user + ">! " + drop(greeting) + " " + drop(intro) + " - " + drop(question), channel);
-        }, 5000);
-        
+        }, process.env.DEFER_TIMEOUT);
+
         rtm.sendMessage("<@" + eventData.user + "> just joined the community! Don't forget to send your greetings!", logChannel);
         console.log("New user greeted: <@" + eventData.user + ">");
     }
