@@ -1,4 +1,4 @@
-<p align="center"><img alt="Howdy icon" src="https://i.imgur.com/6HF0g6W.png" style="width: 100px"></a>
+<p align="center"><img alt="Howdy icon" src="https://i.imgur.com/dOXL4i0.png"></a>
 <h1 align="center">Howdie</h1>
 <p align="center"><i>Hack Club's own friendly welcome bot.</i></p>
 
