@@ -17,20 +17,17 @@ const channel = process.env.CHANNEL_ID; // welcome channel - main
 const logChannel = process.env.LOG_CHANNEL_ID; // log channel - debug
 
 /* load in templates */
-var greeting, intro, question;
 
-fs.readFile('src/templates/greeting.txt', 'utf8', function (err, contents) {
-    greeting = contents.split("\n");
-    console.log("Greeting templates loaded.");
-});
-fs.readFile('src/templates/intro.txt', 'utf8', function (err, contents) {
-    intro = contents.split("\n");
-    console.log("Intro templates loaded.");
-});
-fs.readFile('src/templates/question.txt', 'utf8', function (err, contents) {
-    question = contents.split("\n");
-    console.log("Question templates loaded.");
-});
+// still very temporary, but condensed.
+var templateFiles = ['greeting.txt', 'intro.txt', 'question.txt']
+var templates = []
+for (var i = 0; i < templateFiles.length; i++) {
+    fs.readFile('src/templates/' + templateFiles[i], 'utf8', function (err, contents) {
+        templates[i] = contents.split("\n");
+        console.log(templateFiles[i] + " templates loaded.");
+    })
+}
+
 
 /* return a random line from template */
 function drop(template) {
@@ -48,7 +45,7 @@ rtm.on('member_joined_channel', (eventData) => {
         
         /* timeout prevents message from going out before user joins channel */
         setTimeout(function(){
-            rtm.sendMessage("Howdy, <@" + eventData.user + ">! " + drop(greeting) + " " + drop(intro) + " - " + drop(question), channel);
+            rtm.sendMessage("Howdy, <@" + eventData.user + ">! " + drop(templates[0]) + " " + drop(templates[1]) + " - " + drop(templates[2]), channel);
         }, process.env.DEFER_TIMEOUT);
 
         rtm.sendMessage("<@" + eventData.user + "> just joined the community! Don't forget to send your greetings!", logChannel);
