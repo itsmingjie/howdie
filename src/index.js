@@ -45,7 +45,12 @@ rtm.on('authenticated', (rtmStartData) => {
 /* Main: Member joining channel */
 rtm.on('member_joined_channel', (eventData) => {
     if (eventData.channel == channel) { /* If user joined the welcome Channel */
-        rtm.sendMessage("Howdy, <@" + eventData.user + ">! " + drop(greeting) + " " + drop(intro) + " - " + drop(question), channel);
+        
+        /* timeout prevents message from going out before user joins channel */
+        setTimeout(function(){
+            rtm.sendMessage("Howdy, <@" + eventData.user + ">! " + drop(greeting) + " " + drop(intro) + " - " + drop(question), channel);
+        }, 5000);
+        
         rtm.sendMessage("<@" + eventData.user + "> just joined the community! Don't forget to send your greetings!", logChannel);
         console.log("New user greeted: <@" + eventData.user + ">");
     }
