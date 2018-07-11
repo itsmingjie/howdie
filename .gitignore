@@ -1,0 +1,5 @@
+# Node.js Modules
+node_modules
+
+# Configuration Private Files
+.env
