@@ -24,16 +24,20 @@ const readFile = util.promisify(fs.readFile);
 // still very temporary, but condensed.
 var templateFiles = ['greeting.txt', 'intro.txt', 'question.txt']
 var templates = []
-for (var i = 0; i < templateFiles.length; i++) {
-    try {
-        let contents = await readFile('src/templates/' + templateFiles[i], 'utf8')
-        templates[i] = contents.split("\n");
-        console.log(templateFiles[i] + " templates loaded.");
-    } catch (err) {
-        console.log('This is an error! Templates have not been loaded, error PSA incoming: ' + err)
+
+async function importTemplates() {
+    for (var i = 0; i < templateFiles.length; i++) {
+        try {
+            let contents = await readFile('src/templates/' + templateFiles[i], 'utf8')
+            templates[i] = contents.split("\n");
+            console.log(templateFiles[i] + " templates loaded.");
+        } catch (err) {
+            console.log('This is an error! Templates have not been loaded, error PSA incoming: ' + err)
+        }
     }
 }
 
+importTemplates()
 
 /* return a random line from template */
 function drop(template) {
