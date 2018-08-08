@@ -37,6 +37,7 @@ async function importTemplates() {
     }
 }
 
+importTemplates()
 
 /* return a random line from template */
 function drop(template) {
