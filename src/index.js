@@ -52,9 +52,8 @@ rtm.on('authenticated', (rtmStartData) => {
 /* Main: Member joining channel */
 rtm.on('member_joined_channel', (eventData) => {
     if (eventData.channel == channel) { /* If user joined the welcome Channel */
-        
         /* timeout prevents message from going out before user joins channel */
-        setTimeout(function(){
+        setTimeout(function () {
             rtm.sendMessage("Howdy, <@" + eventData.user + ">! " + drop(templates[0]) + " " + drop(templates[1]) + " - " + drop(templates[2]), channel);
         }, process.env.DEFER_TIMEOUT);
 
